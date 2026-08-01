@@ -1,4 +1,5 @@
 const express = require('express');
+const connectDB = require('./cofig/db')
 const { engine } = require('express-handlebars');
 const path = require('path');
 const app = express();
@@ -6,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+require("dotenv").config();
 
 app.engine('hbs', engine({
     extname: 'hbs',
@@ -21,6 +22,8 @@ app.set('views', path.join(__dirname, 'views'));
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+connectDB();
+
 
 app.get('/', (req, res) => {
     res.render('home');
