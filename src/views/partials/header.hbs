@@ -1,0 +1,36 @@
+<header class="site-header">
+    <div class="site-header__inner">
+        <a href="#" class="logo" aria-label="Gravity Team home">
+            <img src="images/logo-light.png" alt="Gravity Team" width="181" height="42">
+        </a>
+
+        <nav class="main-nav" data-nav aria-label="Main navigation">
+            <ul class="main-nav__list">
+                <li class="main-nav__item"><a href="#about">About Us</a></li>
+                <li class="main-nav__item main-nav__item--dropdown" data-dropdown>
+                    <button class="main-nav__dropdown-toggle" data-dropdown-toggle aria-expanded="false" aria-controls="services-dropdown">
+                        Our Services
+                        <svg class="icon-chevron" width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+                            <path d="M1 2.5L5 6.5L9 2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <ul class="main-nav__dropdown-panel" id="services-dropdown" data-dropdown-panel hidden>
+                        <li><a href="#services">Market Making for Projects</a></li>
+                        <li><a href="#services">Market Making for Exchanges</a></li>
+                        <li><a href="#partners">Liquidity Partnerships</a></li>
+                    </ul>
+                </li>
+                <li class="main-nav__item"><a href="#services">Work with Us</a></li>
+                <li class="main-nav__item"><a href="#blog">Blog</a></li>
+            </ul>
+        </nav>
+
+        <a href="#contact" class="btn btn--primary btn--small">Get In Touch</a>
+
+        <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+        </button>
+    </div>
+</header>
