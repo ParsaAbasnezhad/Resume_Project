@@ -1,3 +1,4 @@
+
 <main>
 
     <!-- =========================================================
@@ -9,154 +10,74 @@
             <nav class="breadcrumb" aria-label="Breadcrumb">
                 <a href="../index.html">Home</a>
                 <span aria-hidden="true">/</span>
-                <a href="../index.html#services">Our Services</a>
-                <span aria-hidden="true">/</span>
-                <span aria-current="page">Market Making for Projects</span>
+                <span aria-current="page">Projects</span>
             </nav>
-            <h1 class="page-hero__title" data-reveal>Market Making<br>for Crypto Projects</h1>
+            <h1 class="page-hero__title" data-reveal>Projects We've<br>Provided Liquidity For</h1>
             <p class="page-hero__subtitle" data-reveal>
-                We design liquidity programs around each token's real trading behaviour —
-                not a one-size-fits-all bot — so founders can focus on building while we keep
-                order books deep, spreads tight, and price discovery healthy.
+                A running list of the token projects and exchanges our desk has supported —
+                filter by category to browse the kind of markets we work in. Figures shown are
+                illustrative examples of typical program outcomes.
             </p>
         </div>
     </section>
 
     <!-- =========================================================
-         PROJECT SHOWCASE
+         PROJECTS LIST
     ========================================================== -->
-    <section class="showcase" id="projects">
+    <section class="showcase" id="projects-list">
         <div class="container">
-            <div class="section-heading">
-                <h2 class="section-heading__title">Selected Project Case Studies</h2>
-                <p class="section-heading__text">
-                    A sample of the liquidity programs our desk has run for token projects across
-                    L1s, DeFi, GameFi and payments. Figures below are illustrative examples of the
-                    kind of outcomes a well-run program can deliver.
-                </p>
+
+            <!-- Category filter — JS toggles [data-category] cards below -->
+            <div class="filter-bar" data-filter-bar role="group" aria-label="Filter projects by category">
+                <button class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-btn" data-filter="layer-1" aria-pressed="false">Layer 1</button>
+                <button class="filter-btn" data-filter="dex" aria-pressed="false">DEX / AMM</button>
+                <button class="filter-btn" data-filter="gamefi" aria-pressed="false">GameFi</button>
+                <button class="filter-btn" data-filter="payments" aria-pressed="false">Payments</button>
+                <button class="filter-btn" data-filter="nft" aria-pressed="false">NFT</button>
+                <button class="filter-btn" data-filter="exchange" aria-pressed="false">Exchanges</button>
             </div>
 
-            <ul class="project-grid">
-                <li class="project-card" data-reveal>
-                    <span class="project-card__tag">Layer&nbsp;1</span>
-                    <h3 class="project-card__name">Aurora&nbsp;Chain</h3>
-                    <p class="project-card__desc">
-                        Multi-exchange quoting program launched alongside a mainnet listing across
-                        6 venues simultaneously.
-                    </p>
-                    <ul class="project-card__metrics">
-                        <li><span data-count-to="71" data-suffix="%">0%</span>tighter average spread</li>
-                        <li><span data-count-to="6" data-prefix="">0</span>exchanges covered on day one</li>
-                    </ul>
-                </li>
+            <p class="filter-empty" data-filter-empty hidden>No projects in this category yet — try another filter.</p>
 
-                <li class="project-card" data-reveal>
-                    <span class="project-card__tag">DEX&nbsp;/&nbsp;AMM</span>
-                    <h3 class="project-card__name">NovaSwap</h3>
-                    <p class="project-card__desc">
-                        Cross-venue arbitrage support that kept the on-chain pool price aligned with
-                        centralized order books during high volatility.
-                    </p>
-                    <ul class="project-card__metrics">
-                        <li><span data-count-to="3.4" data-decimals="1" data-suffix="x">0x</span>daily volume growth</li>
-                        <li><span data-count-to="24" data-suffix="/7">0/7</span>quoting coverage</li>
-                    </ul>
-                </li>
-
-                <li class="project-card" data-reveal>
-                    <span class="project-card__tag">GameFi</span>
-                    <h3 class="project-card__name">Ledgerly&nbsp;Protocol</h3>
-                    <p class="project-card__desc">
-                        Post-TGE stabilization program to smooth out unlock-driven volatility for a
-                        play-to-earn token economy.
-                    </p>
-                    <ul class="project-card__metrics">
-                        <li><span data-count-to="58" data-suffix="%">0%</span>reduction in slippage</li>
-                        <li><span data-count-to="4" data-prefix="">0</span>markets managed</li>
-                    </ul>
-                </li>
-
-                <li class="project-card" data-reveal>
-                    <span class="project-card__tag">Payments</span>
-                    <h3 class="project-card__name">Meridian&nbsp;Pay</h3>
-                    <p class="project-card__desc">
-                        Ongoing depth program supporting a stablecoin-adjacent settlement token used
-                        by regional payment processors.
-                    </p>
-                    <ul class="project-card__metrics">
-                        <li><span data-count-to="99.9" data-decimals="1" data-suffix="%">0%</span>quote uptime</li>
-                        <li><span data-count-to="12" data-prefix="">0</span>markets, 12 months</li>
-                    </ul>
-                </li>
+            <ul class="glass-grid" data-filter-grid>
+                {{#if projects}}
+                    {{#each projects}}
+                        <li class="glass-card" data-reveal data-category="{{this.category}}">
+                            <span class="glass-card__index">{{index}}</span>
+                            <h3 class="glass-card__name">{{this.name}}</h3>
+                            <p class="glass-card__desc">{{this.first_description}}</p>
+                        </li>
+                    {{/each}}
+                {{else}}
+                    <li>No projects available at this time.</li>
+                {{/if}}
             </ul>
         </div>
     </section>
 
     <!-- =========================================================
-         HOW WE WORK
-    ========================================================== -->
-    <section class="process">
-        <div class="container">
-            <div class="section-heading">
-                <h2 class="section-heading__title">How We Work With Projects</h2>
-                <p class="section-heading__text">
-                    A repeatable process built from years of listings, launches and market cycles.
-                </p>
-            </div>
-
-            <ol class="process-steps">
-                <li class="process-step" data-reveal>
-                    <span class="process-step__index">01</span>
-                    <h3 class="process-step__title">Discovery &amp; Modelling</h3>
-                    <p class="process-step__text">
-                        We study your tokenomics, unlock schedule and target venues to model the
-                        liquidity a healthy market actually needs.
-                    </p>
-                </li>
-                <li class="process-step" data-reveal>
-                    <span class="process-step__index">02</span>
-                    <h3 class="process-step__title">Strategy Design</h3>
-                    <p class="process-step__text">
-                        Quoting strategies, risk limits and venue prioritization are configured
-                        specifically for your asset — not reused from a generic template.
-                    </p>
-                </li>
-                <li class="process-step" data-reveal>
-                    <span class="process-step__index">03</span>
-                    <h3 class="process-step__title">Deployment</h3>
-                    <p class="process-step__text">
-                        Our systems go live across chosen exchanges with real-time risk monitoring
-                        from day one.
-                    </p>
-                </li>
-                <li class="process-step" data-reveal>
-                    <span class="process-step__index">04</span>
-                    <h3 class="process-step__title">Ongoing Optimization</h3>
-                    <p class="process-step__text">
-                        Weekly reporting and continuous tuning as your token's market matures and
-                        trading behaviour evolves.
-                    </p>
-                </li>
-            </ol>
-        </div>
-    </section>
-
-    <!-- =========================================================
-         CONTACT (reused component, keeps the "Get In Touch"
-         nav button and CTA buttons working on this page too)
+         CONTACT (reused component)
     ========================================================== -->
     <section class="contact" id="contact">
         <div class="contact__glow" aria-hidden="true"></div>
         <div class="container">
             <div class="section-heading">
-                <h2 class="section-heading__title">Ready to Talk Liquidity?</h2>
+                <h2 class="section-heading__title">Don't See Your Category?</h2>
                 <p class="section-heading__text">
-                    Tell us about your token, your target exchanges, and your timeline — we'll
-                    put together a market-making proposal tailored to your project.
+                    We work across most crypto-native asset types. Reach out and we'll tell you
+                    honestly whether we're a fit for your market.
                 </p>
                 <a href="mailto:hello@gravityteam.co" class="btn btn--primary">Get In Touch</a>
+                <p class="section-heading__alt-link">
+                    or <a href="contact.html" class="link-arrow link-arrow--underline">leave your number and we'll call you</a>
+                </p>
             </div>
         </div>
     </section>
 
 </main>
+
+<!-- =========================================================
+     FOOTER (identical to the homepage, paths adjusted)
+========================================================== -->

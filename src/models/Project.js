@@ -21,6 +21,10 @@ const projectSchema = new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 60,
+    },
+    category:{
+        type: String,
+        required: true,
     }
 }, {
     timestamps: true

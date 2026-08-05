@@ -1,7 +1,27 @@
+/**
+ * Gravity Team — Landing Page Interactions
+ * -------------------------------------------------------------
+ * Vanilla JS, no dependencies. Each feature is an isolated module
+ * with its own init() so pieces can be added/removed independently.
+ *
+ * Modules:
+ *  1. header()       — shrinks/adds shadow to the header on scroll
+ *  2. mobileNav()     — hamburger toggle for small screens
+ *  3. dropdown()      — "Our Services" nav dropdown
+ *  4. revealOnScroll()— fade/slide-in animation via IntersectionObserver
+ *  5. countUp()       — animates numeric stats when they enter view
+ *  6. marquee()        — clones partner columns for a seamless auto-scroll
+ *  7. testimonialCarousel() — data-driven quote rotator
+ *  8. projectFilter()  — category filter for the projects listing page
+ * ------------------------------------------------------------- */
+
 (function () {
     'use strict';
 
-
+    /* ------------------------------------------------------------
+       1. Sticky header — adds a background/shadow once the page
+          has scrolled past the hero.
+    ------------------------------------------------------------ */
     function header() {
         const el = document.querySelector('.site-header');
         if (!el) return;
@@ -11,6 +31,9 @@
         window.addEventListener('scroll', toggle, { passive: true });
     }
 
+    /* ------------------------------------------------------------
+       2. Mobile navigation toggle
+    ------------------------------------------------------------ */
     function mobileNav() {
         const toggleBtn = document.querySelector('[data-nav-toggle]');
         const nav = document.querySelector('[data-nav]');
@@ -39,7 +62,9 @@
         });
     }
 
-
+    /* ------------------------------------------------------------
+       3. "Our Services" dropdown
+    ------------------------------------------------------------ */
     function dropdown() {
         const wrapper = document.querySelector('[data-dropdown]');
         const toggleBtn = document.querySelector('[data-dropdown-toggle]');
@@ -68,7 +93,10 @@
         });
     }
 
-
+    /* ------------------------------------------------------------
+       4. Reveal-on-scroll — fades/slides elements marked
+          [data-reveal] into place the first time they're visible.
+    ------------------------------------------------------------ */
     function revealOnScroll() {
         const items = document.querySelectorAll('[data-reveal]');
         if (!items.length) return;
@@ -97,6 +125,12 @@
         });
     }
 
+    /* ------------------------------------------------------------
+       5. Animated count-up for numeric stat values.
+          Reads target from [data-count-to], with optional
+          [data-prefix], [data-suffix] and [data-decimals].
+          Elements with [data-no-count] are left as static text.
+    ------------------------------------------------------------ */
     function countUp() {
         const values = document.querySelectorAll('[data-count-to]:not([data-no-count])');
         if (!values.length) return;
@@ -146,6 +180,11 @@
         values.forEach((el) => observer.observe(el));
     }
 
+    /* ------------------------------------------------------------
+       6. Partner marquee — duplicates each column's items so the
+          CSS keyframe animation (defined in style.css) can loop
+          seamlessly, and pauses on hover for readability.
+    ------------------------------------------------------------ */
     function marquee() {
         const root = document.querySelector('[data-marquee]');
         if (!root) return;
@@ -153,11 +192,12 @@
         const columns = root.querySelectorAll('[data-marquee-column]');
         if (!columns.length) return;
 
-
+        // Respect users who've asked for reduced motion
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         columns.forEach((column) => {
-
+            // Clone the column's content once so it can scroll continuously
+            // without a visible seam, then let CSS drive the animation.
             const clone = column.cloneNode(true);
             clone.setAttribute('aria-hidden', 'true');
             column.after(clone);
@@ -175,6 +215,11 @@
         }
     }
 
+    /* ------------------------------------------------------------
+       7. Testimonial carousel — cycles through a small data set,
+          supports prev/next buttons, dot navigation, autoplay,
+          and pauses autoplay while hovered or focused.
+    ------------------------------------------------------------ */
     function testimonialCarousel() {
         const root = document.querySelector('[data-carousel]');
         if (!root) return;
@@ -268,6 +313,46 @@
         startAutoplay();
     }
 
+    /* ------------------------------------------------------------
+       8. Project category filter (pages/projects.html)
+          Toggles [data-category] cards in/out of view based on the
+          active [data-filter] button, with an empty-state message.
+    ------------------------------------------------------------ */
+    function projectFilter() {
+        const bar = document.querySelector('[data-filter-bar]');
+        const grid = document.querySelector('[data-filter-grid]');
+        if (!bar || !grid) return;
+
+        const buttons = Array.from(bar.querySelectorAll('[data-filter]'));
+        const cards = Array.from(grid.querySelectorAll('[data-category]'));
+        const emptyMsg = document.querySelector('[data-filter-empty]');
+
+        function applyFilter(filter) {
+            let visibleCount = 0;
+
+            cards.forEach((card) => {
+                const matches = filter === 'all' || card.dataset.category === filter;
+                card.classList.toggle('is-hidden', !matches);
+                if (matches) visibleCount += 1;
+            });
+
+            if (emptyMsg) emptyMsg.hidden = visibleCount !== 0;
+
+            buttons.forEach((btn) => {
+                const active = btn.dataset.filter === filter;
+                btn.classList.toggle('is-active', active);
+                btn.setAttribute('aria-pressed', String(active));
+            });
+        }
+
+        buttons.forEach((btn) => {
+            btn.addEventListener('click', () => applyFilter(btn.dataset.filter));
+        });
+    }
+
+    /* ------------------------------------------------------------
+       Boot everything once the DOM is ready.
+    ------------------------------------------------------------ */
     document.addEventListener('DOMContentLoaded', () => {
         header();
         mobileNav();
@@ -276,5 +361,6 @@
         countUp();
         marquee();
         testimonialCarousel();
+        projectFilter();
     });
 })();
