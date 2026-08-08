@@ -1,0 +1,221 @@
+<!-- =========================================================
+     PAGE HERO
+========================================================== -->
+<section class="page-hero">
+    <div class="page-hero__glow" aria-hidden="true"></div>
+    <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href="/admin">Admin</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Add New Project</span>
+        </nav>
+        <h1 class="page-hero__title" data-reveal>Add New Project</h1>
+        <p class="page-hero__subtitle" data-reveal>
+            Fill in the details below to add a new project to the platform.
+            All fields marked with <span style="color: #ef4444;">*</span> are required.
+        </p>
+    </div>
+</section>
+
+<!-- =========================================================
+     PROJECT FORM
+========================================================== -->
+<section class="contact-form-section">
+    <div class="container contact-form-section__inner">
+
+        <!-- Side note with helpful tips -->
+        <aside class="contact-info" data-reveal>
+            <h2 class="contact-info__title">Project Guidelines</h2>
+            <p class="contact-info__text">
+                Make sure you have all the necessary information ready before
+                submitting. You can edit projects later from the admin dashboard.
+            </p>
+            <ul class="contact-info__list">
+                <li>
+                    <span class="contact-info__label">Categories</span>
+                    <span>Exchanges, Projects</span>
+                </li>
+                <li>
+                    <span class="contact-info__label">Tips</span>
+                    <span>Be concise and clear in descriptions</span>
+                </li>
+                <li>
+                    <span class="contact-info__label">Status</span>
+                    <span>Projects will be visible immediately</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Project Form -->
+        <form class="contact-form" action="/create-project/data" method="POST" novalidate>
+            <!-- Project Name -->
+            <div class="form-group">
+                <label class="form-label" for="project-name">
+                    Project Name <span style="color: #ef4444;">*</span>
+                </label>
+                <input
+                        class="form-input"
+                        type="text"
+                        id="project-name"
+                        name="name"
+                        placeholder="e.g., Gravity Exchange"
+                        minlength="5"
+                        maxlength="50"
+                        required
+                >
+                <small style="display:block; margin-top: 0.25rem; opacity: 0.7; font-size: 0.875rem;">
+                    5-50 characters
+                </small>
+            </div>
+
+            <!-- Authors -->
+            <div class="form-group">
+                <label class="form-label" for="project-authors">
+                    Author(s) <span style="color: #ef4444;">*</span>
+                </label>
+                <input
+                        class="form-input"
+                        type="text"
+                        id="project-authors"
+                        name="authors"
+                        placeholder="e.g., John Doe, Jane Smith"
+                        minlength="5"
+                        maxlength="50"
+                        required
+                >
+                <small style="display:block; margin-top: 0.25rem; opacity: 0.7; font-size: 0.875rem;">
+                    5-50 characters
+                </small>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+                <label class="form-label" for="project-category">
+                    Category <span style="color: #ef4444;">*</span>
+                </label>
+                <select class="form-input" id="project-category" name="category" required>
+                    <option value="">Select a category</option>
+                    <option value="Exchanges">Exchanges</option>
+                    <option value="Projects">Projects</option>
+                </select>
+            </div>
+
+            <!-- First Description (Short) -->
+            <div class="form-group">
+                <label class="form-label" for="project-short-desc">
+                    Short Description <span style="color: #ef4444;">*</span>
+                </label>
+                <input
+                        class="form-input"
+                        type="text"
+                        id="project-short-desc"
+                        name="first_description"
+                        placeholder="A brief tagline or summary"
+                        minlength="5"
+                        maxlength="60"
+                        required
+                >
+                <small style="display:block; margin-top: 0.25rem; opacity: 0.7; font-size: 0.875rem;">
+                    5-60 characters
+                </small>
+            </div>
+
+            <!-- Full Description -->
+            <div class="form-group">
+                <label class="form-label" for="project-full-desc">
+                    Full Description <span style="color: #ef4444;">*</span>
+                </label>
+                <textarea
+                        class="form-input form-textarea"
+                        id="project-full-desc"
+                        name="description"
+                        rows="5"
+                        placeholder="Detailed description of the project"
+                        minlength="5"
+                        maxlength="60"
+                        required
+                ></textarea>
+                <small style="display:block; margin-top: 0.25rem; opacity: 0.7; font-size: 0.875rem;">
+                    5-60 characters
+                </small>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button class="btn btn--primary" type="submit">
+                    Add Project
+                </button>
+                <button class="btn btn--secondary" type="reset">
+                    Clear All
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<style>
+    /* Additional styles for admin form */
+    .btn--secondary {
+        background: transparent;
+        border: 1px solid #e5e7eb;
+        color: #6b7280;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .btn--secondary:hover {
+        background: #f3f4f6;
+        border-color: #6b7280;
+    }
+
+    .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        margin-top: 1.5rem;
+    }
+
+    select.form-input {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+        cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .form-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .btn--secondary {
+            order: 2;
+        }
+
+        .btn--primary {
+            order: 1;
+        }
+    }
+
+    /* Style for required asterisk */
+    .form-group input:invalid,
+    .form-group textarea:invalid,
+    .form-group select:invalid {
+        border-color: #fca5a5;
+    }
+
+    .form-group input:valid,
+    .form-group textarea:valid,
+    .form-group select:valid {
+        border-color: #6ee7b7;
+    }
+</style>

@@ -1,14 +1,18 @@
 const Project = require('../models/Project');
 
 
-const projectController =async (req, res) => {
+const projectController = async (req, res) => {
     try {
-        const projects = await Project.find();
+        const projects = await Project.find().sort({ createdAt: -1 }).lean();
         res.render('projects', {
             projects: projects,
+            title: 'Projects'
         });
     } catch (error) {
-        res.render('error', {error: error});
+        console.error(error);
+        res.render('error', {
+            error: 'Failed to load projects. Please try again later.'
+        });
     }
 }
 

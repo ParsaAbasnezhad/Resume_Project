@@ -8,10 +8,9 @@ const projectSchema = new mongoose.Schema({
         required: true,
         minlength: 5,
         maxlength: 50,
-        enum: category
     },
     authors:{
-        type: String,
+        type: [String],
         required: true,
         minlength: 5,
         maxlength: 50,
@@ -31,6 +30,7 @@ const projectSchema = new mongoose.Schema({
     category:{
         type: String,
         required: true,
+        enum: category
     }
 }, {
     timestamps: true

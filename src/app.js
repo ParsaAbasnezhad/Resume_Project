@@ -3,6 +3,7 @@ const connectDB = require('./cofig/db')
 const projectRouter = require('./routers/project');
 const exchangesRouter = require('./routers/exchanges');
 const chatRouter = require('./routers/chat');
+const createProjectRouter = require('./routers/create-projects');
 const { engine } = require('express-handlebars');
 const path = require('path');
 const app = express();
@@ -30,8 +31,9 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-app.use('/project', projectRouter);
+app.use('/projects', projectRouter);
 app.use('/', chatRouter);
+app.use('/', createProjectRouter)
 app.use('/exchange', exchangesRouter);
 
 

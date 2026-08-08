@@ -44,7 +44,7 @@
                 {{#if projects}}
                     {{#each projects}}
                         <li class="glass-card" data-reveal data-category="{{this.category}}">
-                            <span class="glass-card__index">{{index}}</span>
+                            <span class="glass-card__index">{{@index}}</span>
                             <h3 class="glass-card__name">{{this.name}}</h3>
                             <p class="glass-card__desc">{{this.first_description}}</p>
                         </li>
