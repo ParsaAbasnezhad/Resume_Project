@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./cofig/db')
 const projectRouter = require('./routers/project');
 const exchangesRouter = require('./routers/exchanges');
+const chatRouter = require('./routers/chat');
 const { engine } = require('express-handlebars');
 const path = require('path');
 const app = express();
@@ -30,6 +31,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/project', projectRouter);
+app.use('/', chatRouter);
 app.use('/exchange', exchangesRouter);
+
 
 module.exports = app;

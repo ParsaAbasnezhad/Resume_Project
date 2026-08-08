@@ -10,6 +10,12 @@ const projectSchema = new mongoose.Schema({
         maxlength: 50,
         enum: category
     },
+    authors:{
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 50,
+    },
     first_description: {
         type: String,
         required: true,

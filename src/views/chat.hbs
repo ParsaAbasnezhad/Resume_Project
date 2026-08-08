@@ -1,0 +1,100 @@
+ <!-- =========================================================
+         PAGE HERO
+    ========================================================== -->
+    <section class="page-hero">
+        <div class="page-hero__glow" aria-hidden="true"></div>
+        <div class="container">
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">Contact Us</span>
+            </nav>
+            <h1 class="page-hero__title" data-reveal>Leave Your Number,<br>We'll Call You Back</h1>
+            <p class="page-hero__subtitle" data-reveal>
+                Drop your phone number and a short message below. It goes straight to our team
+                — no lengthy forms, no spam.
+            </p>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         CONTACT FORM
+    ========================================================== -->
+    <section class="contact-form-section">
+        <div class="container contact-form-section__inner">
+
+            <!-- Side note reusing the "join" text styling for consistency -->
+            <aside class="contact-info" data-reveal>
+                <h2 class="contact-info__title">Talk to a Human</h2>
+                <p class="contact-info__text">
+                    Whether you're a project looking for liquidity, an exchange wanting deeper
+                    order books, or just curious — leave your number and a quick note and someone
+                    from our team will reach out.
+                </p>
+                <ul class="contact-info__list">
+                    <li>
+                        <span class="contact-info__label">Email</span>
+                        <a href="mailto:hello@gravityteam.co">hello@gravityteam.co</a>
+                    </li>
+                    <li>
+                        <span class="contact-info__label">Response time</span>
+                        <span>Usually within one business day</span>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- ==========================================================
+                 The form below is FRONTEND ONLY. Submitting it does not
+                 send data anywhere yet — see the comment above
+                 initContactForm() in js/main.js for how to wire it up to
+                 a real backend/API endpoint (e.g. an admin notification
+                 service, Telegram bot, email API, etc.).
+            =========================================================== -->
+            <form class="contact-form" action="/chat-post" data-contact-form novalidate data-reveal method="POST">
+                <div class="form-status" data-form-status role="status" aria-live="polite" hidden></div>
+
+                <div class="form-group">
+                    <label class="form-label" for="cf-name">Name <span class="form-optional">(optional)</span></label>
+                    <input class="form-input" type="text" id="cf-name" name="name" autocomplete="name" placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="cf-phone">Phone number <span class="form-required">*</span></label>
+                    <input
+                            class="form-input"
+                            type="tel"
+                            id="cf-phone"
+                            name="number"
+                            autocomplete="tel"
+                            placeholder="+1 555 000 0000"
+                            data-validate="phone"
+                            required
+                    >
+                    <p class="form-error" data-error-for="cf-phone" hidden></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="cf-message">Message <span class="form-required">*</span></label>
+                    <textarea
+                            class="form-input form-textarea"
+                            id="cf-message"
+                            name="message"
+                            rows="5"
+                            placeholder="Tell us a bit about what you need…"
+                            data-validate="message"
+                            required
+                    ></textarea>
+                    <p class="form-error" data-error-for="cf-message" hidden></p>
+                </div>
+
+                <div class="form-actions">
+                    <button class="btn btn--primary" type="submit" data-submit-btn>
+                        <span data-submit-label>Send Message</span>
+                    </button>
+                    <p class="form-hint">We'll only use this to contact you back — no marketing emails.</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</main>
