@@ -8,16 +8,16 @@ const chatSchema = new mongoose.Schema({
     },
     number: {
         type: String,
-        required: [true, 'شماره تماس الزامی است'],
+        required: true,
         trim: true,
-        minlength: [10, 'شماره تماس حداقل 10 رقم است'],
-        maxlength: [15, 'شماره تماس حداکثر 15 رقم است']
+        minlength: 10,
+        maxlength: 15
     },
     message: {
         type: String,
-        required: [true, 'متن پیام الزامی است'],
+        required:true,
         trim: true,
-        minlength: [1, 'پیام نمی‌تواند خالی باشد']
+        minlength: 1
     },
     timestamp: {
         type: Date,

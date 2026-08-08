@@ -28,7 +28,7 @@ const postChatController = async (req, res) => {
     } catch (err) {
         console.error("error:", err);
         req.flash('error', errorMessage);
-        res.redirect('/');
+        res.redirect('/'); // my home
     }
 };
 
